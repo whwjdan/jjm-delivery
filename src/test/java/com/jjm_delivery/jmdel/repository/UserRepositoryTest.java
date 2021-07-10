@@ -28,7 +28,6 @@ public class UserRepositoryTest extends JjmDeliveryApplicationTests {
     @Autowired
     private UserRepository userRepository;
 
-
     @Test
     @Transactional
     public void 회원가입_불러오기(){
@@ -45,7 +44,7 @@ public class UserRepositoryTest extends JjmDeliveryApplicationTests {
 
         //given
         User newUser = userRepository.save(user);
-        Assertions.assertNotNull(newUser);
+        assertThat(newUser).isNotNull();
 
         //when
         Optional<User> readUser = userRepository.findByAccount("user_test");
