@@ -2,6 +2,8 @@ package com.jjm_delivery.jmdel.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,7 +12,6 @@ class UserTest {
     @Test
     void creation(){
         User user = User.builder()
-                .id(1L)
                 .account("user_test")
                 .password("1234")
                 .email("jjm@naver.com")
@@ -18,7 +19,6 @@ class UserTest {
                 .phoneNumber("010-1111-1111")
                 .build();
 
-        assertThat(user.getId()).isEqualTo(1L);
         assertThat(user.getAccount()).isEqualTo("user_test");
         assertThat(user.getPassword()).isEqualTo("1234");
         assertThat(user.getEmail()).isEqualTo("jjm@naver.com");

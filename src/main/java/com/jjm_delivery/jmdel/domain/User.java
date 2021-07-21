@@ -65,4 +65,15 @@ public class User {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    @Builder
+    public User(Long id, String account, String password, String email
+            , String name, String phoneNumber, LocalDateTime createdAt){
+        this.id = id;
+        this.account = account;
+        this.password = password;
+        this.email = email;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.createdAt = createdAt;
+    }
 }

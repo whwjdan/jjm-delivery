@@ -38,8 +38,6 @@ public class UserRepositoryTest extends JjmDeliveryApplicationTests {
                 .email("jjm@naver.com")
                 .name("테스트")
                 .phoneNumber("010-1111-1111")
-                .createdAt(LocalDateTime.now())
-                .updatedAt(LocalDateTime.now())
                 .build();
 
         //given
