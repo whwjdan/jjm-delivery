@@ -76,4 +76,8 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.createdAt = createdAt;
     }
+
+    public User(String account) {
+        this.account = account;
+    }
 }

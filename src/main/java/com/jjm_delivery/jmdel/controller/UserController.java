@@ -1,6 +1,7 @@
 package com.jjm_delivery.jmdel.controller;
 
 import com.jjm_delivery.jmdel.network.request.UserApiRequest;
+import com.jjm_delivery.jmdel.network.response.UserApiResponse;
 import com.jjm_delivery.jmdel.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,8 @@ public class UserController {
     // userService로 전달
     // 회원가입시
     @PostMapping("/user/join")
-    public Long save(@RequestBody UserApiRequest userApiRequest){
-        return userService.createUser(userApiRequest);
+    public void save(@RequestBody UserApiRequest userApiRequest){
+        userService.createUser(userApiRequest);
     }
 
     @PutMapping("/user/update/{id}")
