@@ -1,4 +1,4 @@
-package com.jjm_delivery.jjmdelivery;
+package com.jjm_delivery.jmdel;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

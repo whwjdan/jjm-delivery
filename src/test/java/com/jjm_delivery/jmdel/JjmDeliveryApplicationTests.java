@@ -1,10 +1,10 @@
-package com.jjm_delivery.jjmdelivery;
+package com.jjm_delivery.jmdel;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class JjmDeliveryApplicationTests {
+public class JjmDeliveryApplicationTests {
 
     @Test
     void contextLoads() {
