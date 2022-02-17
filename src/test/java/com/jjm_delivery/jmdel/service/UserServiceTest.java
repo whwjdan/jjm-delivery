@@ -26,6 +26,11 @@ import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
 
 /*
+Mock을 사용하는 이유
+UserService를 테스트해야 하는데 UseService는 UserRepository와 의존성을 가지고 있기 때문에
+테스트를 할 때 전체를 모두 돌려버리면 시간이 오래걸리게 된다.
+따라서 빠른 단위테스트를 위해 Mock을 사용하여 가짜 객체를 만들고 테스트를 진행한다.
+
 서비스 레이어의 테스트는 단위테스트가 되어야한다.
 
 단위테스트 F.I.R.S.T 원칙
@@ -92,6 +97,8 @@ public class UserServiceTest {
                 .updatedAt(null)
                 .build();
 
+
+
     @BeforeEach
     public void 사용자_객체_생성(){
 
@@ -106,12 +113,11 @@ public class UserServiceTest {
                 .createdAt(LocalDateTime.now())
                 .updatedAt(null)
                 .build();
-
     }
 
     @Test
-    @DisplayName("회원 가입")
-    public void 사용자_생성() throws Exception{
+    @DisplayName("회원 가입 성공")
+    public void 회원가입_성공() throws Exception{
 
         given(userRepository.save(any())).willReturn(user);
         UserApiResponse res = userService.createUser(userApiRequest);
@@ -123,11 +129,17 @@ public class UserServiceTest {
     @DisplayName("회원 가입_계정 중복")
     public void createUserExistedAccount() throws Exception{
 
-        given(userRepository.findById(userApiRequest.getId())).willReturn(Optional.ofNullable(user));
+        given(userRepository.save(any())).willReturn(user);
+        //given에 userRepository가 들어가는 이유는 @Mock을 통해 userRepository를 지정하였기 때문
+        //따라서 given을 사용한 뒤 assertThat을 통해 검증하는 것
+
+        //UserApiResponse res = UserService가 Mock객체를 주입받아 객체를 생성
+        //위에 주어진 조건절에 따라 UserService에서 createUser -> userRepository에서 저장할 때 무조건 user객체를 반환하기 때문에
+        //res = user가 되는 것이다. Mock의 경우 가짜객체를 생성하여 테스트하는 것이기 때문에 그 객체를 넣어주기 위해 위와 같은 방식을 사용한다.
         UserApiResponse res = userService.createUser(userApiRequest);
+        System.out.println(res.getAccount());
         assertThat(res.getAccount()).isEqualTo(userApiRequest.getAccount());
 
-        verify(userRepository, times(1)).save(any(User.class));
     }
 
     @Test
